@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- QUESTO FILE GESTISCE CONTO, INTESO COME RIASSUNTO FINALE DEI PIATTI E DELLE BEVANDE -->
+<!-- NON C'E' CONTO VERO E PROPRIO -->
+<!-- SI INTRODUCE GET PER LEGGERE IL VALORE DI UNA VARIABILE (PREDICATE) -->
+<!-- R25 E R26 SONO RIDUZIONI A R27-->
+	
+	<topic name="conto">
+	    
+	    <!-- RECUPERARE I VALORI CON <GET> PER bevanda1 e bevanda2 -->
+	    <!-- R24 -->
+	    <category>
+	        <pattern>*</pattern>
+	        <template>
+	            Ecco il conto. Abbiamo 
+	                <ul>
+	                    <li><get name="piatto1"/> </li>
+	                    <li><get name="piatto2"/> </li>
+	                    <li><get name="..."/> </li>
+	                    <li> ... </li>
+	                </ul>     
+	                 Fa 20 euro.
+	        </template>
+	    </category>
+	    
+	    <!-- srai -->
+	     <!-- R25 -->
+	    <category>
+	        <pattern>
+	            Ecco
+	        </pattern>
+	        <template>
+	           <srai>Tenga</srai>
+	        </template>
+	    </category>
+	    
+	    <!-- R26 -->
+	    <category>
+	        <pattern>
+	            A lei
+	        </pattern>
+	        <template>
+	           <srai>Tenga</srai>
+	        </template>
+	    </category>
+	    
+	     <!-- R27 -->
+	     <category>
+	        <pattern>
+	            Tenga
+	        </pattern>
+	        <template>
+	           Ecco lo scontrino. Grazie e a presto. 
+	           <set name="topic"></set>
+	        </template>
+	    </category>
+	    
+	    
+	</topic>
+	
+	
+</aiml>

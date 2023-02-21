@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	
+<!-- QUESTO FILE CONTIENE LE REGOLE PER OGNI TIPO DI SALUTO -->
+<!-- IL PATTERN CAMBIA PER INTERCETTARE OGNI TIPO DI SALUTI -->
+<!-- IL TEMPLATE CAMBIA PER RICAMBIARE IL SALUTO CON LO STESSO SALUTO -->
+	
+	<!-- R1 -->
+	<category>
+	    <pattern>Buongiorno</pattern>
+	    <template>Buongiorno, ha prenotato?</template>
+	</category>
+	
+	<!-- AGGIUNGERE IL PATTERN PER BUONASERA -->
+	<!-- R2 -->
+	<category>
+	    <pattern> ... </pattern>
+	    <template>Buonasera, ha prenotato?</template>
+	</category>
+	
+	
+	<!-- AGGIUNGERE IL PATTERN PER SALVE -->	
+	<!-- R3 -->
+	<category>
+	    <pattern> ... </pattern>
+	    ...
+	</category>
+	
+	<!-- AGGIUNGERE UN PATTERN DI SALUTO A PIACERE -->
+	<!-- R4 -->
+	... 
+	
+	
+</aiml>

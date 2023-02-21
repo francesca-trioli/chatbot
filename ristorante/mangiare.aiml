@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+    
+<!-- QUESTO FILE GESTISCE LE ORDINAZIONI DEI CIBI (LIMITE: SI ORDINA UN SOLO TIPO DI PORTATA)-->    
+<!-- R15, R16, R17 GESTISCONO LA RICHIESTA DI MENU DA PARTE DELL'UTENTE (DIVISO IN PRIMI, SECONDI E PIATTI UNICI) -->
+<!-- R18, R19, R20 SERVONO PER CONFERMARE LA SCELTA DEL TIPO DI PORTATA DA PARTE DELL'UTENTE  -->     
+<!-- R21 CONTIENE I PIATTI DISPONIBILI PER OGNI TIPO DI PORTATA -->  
+<!-- R22 E R23 GESTISCONO L'ORDINE DEL PIATTO (MAX 2) DA PARTE CLIENTE E INTRODUCONO IN TOPIC "conto" -->  
+    
+    
+<!-- SI INTRODUCONO I BOTTONI CON TESTO ASSOCIATO -->
+<!-- SI INTRODUCE <srai> PER RIDURRE UNA PATTER A UN ALTRO -->
+<!-- SI INTRODUCE CONDITION-VALUE PER GESTIRE I POSSIBILI VALORI DI UN PREDICATO -->
+
+    
+    <topic name="mangiare">
+        	         
+        <!-- CREAZIONE DEI BOTTONI -->
+        <!-- AGGIUNGERE IL BOTTONE PER PIATTO UNICO  <text> deve avere valore "PIATTO UNICO" -->
+        
+        <!-- R15 --> 
+        <category>
+            <pattern>cosa *</pattern>
+            <template>
+                Ecco il nostro menu: 
+                <button>
+                    <text>PRIMO</text>
+                    <postback> </postback>
+                </button>
+                <button>
+                    <text>SECONDO</text>
+                    <postback> </postback>
+                </button>
+				...
+            </template>
+        </category>
+        
+		<!-- COMPLETATE R16 e R17 CON IL TAG <srai> IN <template> --> 
+        <!-- <srai> DEVE CONTENERE IL RIMANDO A "* cosa" -->
+        <!-- R16 -->        
+        <category>
+            <pattern>Avete *</pattern>
+            <template><srai>cosa *</srai></template>
+        </category>
+        
+
+        <!-- R17 --> 
+        <category>
+            <pattern>^ menu ^</pattern>
+            <template> ... </template>
+        </category>
+        
+        
+        <!-- QUESTI PATTERN SETTANO IL PREDICATO PORTATA CON IL VALORE SCELTO DALL'UTENTE -->                   
+        <!-- R18 --> 
+        <category>
+            <pattern>PRIMO</pattern>
+            <template>
+                <think><set name="portata">primo</set></think>
+                <delay>2</delay> Vuole il menu dei primi? 
+            </template>
+        </category>
+        
+        <!-- R19 --> 
+        <category>
+            <pattern>SECONDO</pattern>
+            <template>
+                <think><set name="portata">secondo</set></think>
+                <delay>2</delay> Vuole il menu dei secondi?
+            </template>
+        </category>
+        
+        <!-- R20 -->        
+        <!-- COMPLETARE SETTANDO IL PREDICATO portata per il piatto unico ("unico") -->
+        <category>
+            <pattern>PIATTO UNICO</pattern>
+            <template>
+                <think>...</think>
+                <delay>2</delay> Le dico i piatti unici di oggi?
+            </template>
+        </category>
+   
+   
+        <!-- COSTRUTTO TIPO CASE: IL TEMPLATE GENERA SOLO IL PRIMO PUNTO IL CUI VALUE E' UGUALE A QUELLO DELLA VARIABILE -->
+        <!-- PER OGNI PORTATA SI ELENCANO LE ALTERNATIVE DISPONIBILI, POI SI SETTA IL NUOVO TOPIC "piatti" --> 
+    	<!-- aggiungere i punti lista <li> per secondo e unico  -->       
+        <!-- R21 --> 
+        <category>
+        <pattern>*</pattern>
+        <template>
+            <condition name="portata">
+                    <li value="primo">Abbiamo pasta al pomodoro o risotto al barbera</li>   
+                    <li value=" ... ">Oggi ci sono i gamberi alla griglia o  ... </li>
+                    ...
+            </condition>
+            <think><set name="topic">piatti</set></think>
+        </template>    
+        </category>
+                
+    </topic>
+    
+    
+    <!-- QUESTO TOPIC CONTIENE L'ORDINE DEI SINGOLI PIATTI E INTRODUCE IL CONTO -->
+    <!-- 2 PREDICATI, piatto1 e piatto2, come le bevande -->
+    <topic name="piatti">
+    
+    	<!-- R22 --> 
+        <category>
+            <pattern>Prendo * </pattern>
+            <template>
+                Allora <set name="piatto1"><star index="1" /></set><set name="piatto2"></set>. Benissimo.
+                <delay>5</delay>
+                Ecco il suo ordine.
+                <think><set name="topic">conto</set></think>
+            </template>
+        </category>
+
+
+        <!-- R23 --> 
+        <category>
+            <pattern>Prendo * e * </pattern>
+            <template>
+                Va bene, allora 
+                <set name="piatto1"><star index="1" /> e <set name="piatto2"><star index="2" /></set></set>.
+                <delay>5</delay>
+                Ecco il suo ordine.
+                <think><set name="topic">conto</set></think>
+            </template>
+        </category>
+    
+    </topic>
+    
+
+
+    
+</aiml>
