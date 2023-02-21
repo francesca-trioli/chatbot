@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<aiml>
-	<!-- insert your AIML categories here -->
-	<category>
-	    <pattern>*</pattern>
-	    <template>Sono da lei in un momento. <delay>4</delay>Per favore, può ripetere la domanda?</template>
-	</category>
-</aiml>
