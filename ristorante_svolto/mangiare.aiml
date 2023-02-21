@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+    <!-- insert your AIML categories here -->
+    <topic name="mangiare">
+        
+        <category>
+            <pattern>^ menu ^</pattern>
+            <template><srai>cosa *</srai></template>
+        </category>
+        
+                
+        <category>
+            <pattern>Avete *</pattern>
+            <template><srai>cosa *</srai></template>
+        </category>
+        
+        <category>
+            <pattern>cosa *</pattern>
+            <template>
+                Ecco il nostro menu: 
+                <button>
+                    <text>PRIMO</text>
+                    <postback>
+                        <!-- <think><set name="portata">primo</set></think> -->
+                    </postback>
+                </button>
+                <button>
+                    <text>SECONDO</text>
+                    <postback>
+                        <!-- <think><set name="portata">secondo</set></think>-->
+                        </postback>
+                </button>
+                <button>
+                    <text>PIATTO UNICO</text>
+                    <postback>
+                        <!--<think><set name="portata">unico</set></think>-->
+                    </postback>
+                </button>
+            </template>
+        </category>
+        
+        <category>
+            <pattern>PRIMO</pattern>
+            <template>
+                <think><set name="portata">primo</set></think>
+                <delay>2</delay> Vuole il menu dei primi?
+            </template>
+        </category>
+        
+        <category>
+            <pattern>SECONDO</pattern>
+            <template>
+                <think><set name="portata">secondo</set></think>
+                <delay>2</delay> Vuole il menu dei secondi?
+            </template>
+        </category>
+        
+        <category>
+            <pattern>PIATTO UNICO</pattern>
+            <template>
+                <think><set name="portata">unico</set></think>
+                <delay>2</delay> Le dico i piatti unici di oggi?
+            </template>
+        </category>
+        
+        <category>
+        <pattern>*</pattern>
+        <template>
+            <condition name="portata">
+                    <li value="primo">Abbiamo pasta al pomodoro o risotto al barbera</li>   
+                    <li value="secondo">Oggi ci sono i gamberi alla griglia o la cotoletta alla milanese</li>
+                    <li value="unico">Se vuole, abbiamo pizza margherita o focaccia valdostana</li>
+            </condition>
+            <think><set name="topic">piatti</set></think>
+        </template>    
+        </category>
+        
+        
+    </topic>
+    
+    
+    <topic name="piatti">
+        <category>
+            <pattern>Prendo * </pattern>
+            <template>
+                Allora <set name="piatto1"><star index="1" /></set><set name="piatto2"></set>. Benissimo.
+                <delay>5</delay>
+                Ecco il suo ordine.
+                <think><set name="topic">conto</set></think>
+            </template>
+        </category>
+
+
+        <category>
+            <pattern>Prendo * e * </pattern>
+            <template>
+                Va bene, allora 
+                <set name="piatto1"><star index="1" /> e <set name="piatto2"><star index="2" /></set></set>.
+                <delay>5</delay>
+                Ecco il suo ordine.
+                <think><set name="topic">conto</set></think>
+            </template>
+        </category>
+    </topic>
+    
+
+
+    
+</aiml>

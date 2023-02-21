@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	<topic name="bere">
+
+	<category>
+	    <pattern>Vorrei *</pattern>
+	    <that>* COSA VORRESTE DA BERE</that>
+	    <template>
+	        <think>
+	            <set name="bevanda1"><star index="1" /></set>
+	            <set name="bevanda2"></set>
+	        </think>
+	        Altro?
+	        </template>
+	</category> 
+	
+	<category>
+	    <pattern>*</pattern>
+	    <that>* COSA VORREBBE DA BERE</that>
+	    <template>
+	        Altro? 
+	        <think>
+	            <set name="bevanda1"><star index="1" /></set>
+	            <set name="bevanda2"></set>
+	        </think>
+	    </template>
+	</category> 
+	
+	<category>
+	    <pattern>Prendo *</pattern>
+	    <that>* COSA VORREBBE DA BERE</that>
+	    <template>Va bene. Altro?
+	        <think>
+	            <set name="bevanda1"><star index="1" /></set>
+	            <set name="bevanda2"></set>
+	        </think>
+	    </template>
+	</category>
+	    
+
+	<category>
+	    <pattern>*</pattern>
+	    <that> ^ ALTRO</that>
+	    <template>Va bene. Altro?
+	    <think><set name="bevanda2"><star index="1" /></set></think>
+	    </template>
+	</category> 	
+	
+	
+	<category>
+	    <pattern>No</pattern>
+	    <that> ^ ALTRO</that>
+	    <template>
+	        Passiamo al mangiare... Cosa prende?
+	        <think><set name="topic">mangiare</set></think>
+	    </template>
+	</category>
+	    
+	</topic>
+	
+</aiml>

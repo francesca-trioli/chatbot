@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	
+	<topic name="conto">
+	    
+	    <category>
+	        <pattern>*</pattern>
+	        <template>
+	            Ecco il conto. Abbiamo 
+	                <ul>
+	                    <li><get name="piatto1"/> </li>
+	                    <li><get name="piatto2"/> </li>
+	                    <li><get name="bevanda1"/> </li>
+	                    <li><get name="bevanda2"/> </li>
+	                </ul>     
+	                 Fa 20 euro.
+	        </template>
+	    </category>
+	    
+	    <!-- srai -->
+	    <category>
+	        <pattern>
+	            Ecco
+	        </pattern>
+	        <template>
+	           <srai>Tenga</srai>
+	        </template>
+	    </category>
+	    
+	    <category>
+	        <pattern>
+	            A lei
+	        </pattern>
+	        <template>
+	           <srai>Tenga</srai>
+	        </template>
+	    </category>
+	    
+	    
+	     <category>
+	        <pattern>
+	            Tenga
+	        </pattern>
+	        <template>
+	           Ecco lo scontrino. Grazie e a presto. 
+	           <set name="topic"></set>
+	        </template>
+	    </category>
+	    
+	    
+	</topic>
+	
+	
+</aiml>
