@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	
+	<topic name="scelta">
+	
+		<category>
+	        <pattern>^ padre ^</pattern>
+	        <template>
+	            <srai>^ genitore ^</srai>
+	        </template>
+        </category>
+    
+	    <category>
+	        <pattern>^ madre ^</pattern>
+	        <template>
+	             <srai>^ genitore ^</srai>
+	        </template>
+        </category>
+
+        <category>
+	        <pattern>^ genitore ^</pattern>
+	        <template>
+	            Che tipo di informazioni cerchi?
+                    <button>
+	                    <text>Ricevimento professori</text>
+	                    <postback>ricevimento</postback>
+                    </button>
+	                <button>
+	                    <text>Orario uffici</text>
+	                    <postback>ubicazione</postback>
+                    </button>
+                    <button>
+                        <text>Indirizzi di studio</text>
+                        <postback>indirizzi</postback>
+                    </button>
+	       </template>
+        </category>
+
+
+    <category>
+        <pattern>indirizzi</pattern>
+        <template>
+            Ci sono numerosi indirizzi.
+            Clicca sui collegamenti per vederne la descrizione: 
+            <link>
+                <text>Meccanica meccatronica</text>
+                <url>https://www.itiscuneo.gov.it/index.php/corsi/meccanica-meccatronica</url>
+            </link>
+            <link>
+                <text>Chimica e materiali</text>
+                <url>https://www.itiscuneo.gov.it/index.php/corsi/chimica-materiali</url>
+            </link>
+            <link>
+                <text>...</text>
+                <url>...</url>
+            </link>
+        </template>
+    </category>
+            
+    
+    <category>
+        <pattern>^ studentessa ^</pattern>
+        <template><srai>^ studente ^</srai></template>
+    </category>
+    
+        <category>
+        <pattern>^ frequento ^</pattern>
+        <template><srai>^ studente ^</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ studente ^</pattern>
+        <template>
+            Che tipo di informazioni cerchi?
+            <button>
+	            <text>Orario scolastico</text>
+	            <postback>orario</postback>
+            </button>
+	        <button>
+	            <text>Collocazione uffici</text>
+	            <postback>uffici</postback>
+            </button>
+            <button>
+                <text>Avvisi e news</text>
+                <postback>avvisi</postback>
+            </button>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>orario</pattern>
+        <template>
+            Di quale sezione vuoi conoscere l'orario?
+            <think><set name="topic">orario</set></think>
+            </template>
+    </category>
+    
+
+    </topic>
+    
+	
+</aiml>
